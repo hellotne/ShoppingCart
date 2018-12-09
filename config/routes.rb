@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
+  root "shopper#index", as: 'root'
+  get 'admin', to: 'admin#index'
+  get 'login', to: 'access#new'
+
+  #get 'access/new'
+  post 'login', to: 'access#create'
+  delete 'access/destroy', to: 'access#destroy', as: 'logout'
+
+  resources :users
+  resources :orders
   resources :lineitems
   resources :carts
-  root "shopper#index", as: 'root'
 
   get 'shopper/index'
   resources :products
